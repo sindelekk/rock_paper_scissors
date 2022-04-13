@@ -1,8 +1,28 @@
 let pScore = 0;
 let cScore = 0;
-
+let rounds = 5;
 
 game();
+
+function game() {
+    let rock = document.querySelector("#rock");
+    rock.addEventListener("click", () => {
+        computerSelection = computerPlay();
+        playRound("rock", computerSelection);
+    })
+
+    let paper = document.querySelector("#paper");
+    paper.addEventListener("click", () => {
+        computerSelection = computerPlay();
+        playRound("paper", computerSelection);
+    })
+
+    let scissors = document.querySelector("#scissors");
+    scissors.addEventListener("click", () => {
+        computerSelection = computerPlay();
+        playRound("scissors", computerSelection);
+    })
+}
 
 function computerPlay() {
     const comp = Math.floor(Math.random() * 3);
@@ -16,18 +36,20 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection)
-        alert("It's a Tie!");
+        document.getElementById("game").innerHTML = "It`s a Tie!";
 
     else if (playerSelection === "rock") 
     {
         if (computerSelection === "scissors") 
         {
-            alert(`You Win! ${playerSelection} beats ${computerSelection}`);
+            document.getElementById("game").innerHTML = 
+            `You Win! ${playerSelection} beats ${computerSelection}`;
             pScore++;
         }
         else 
         {
-            alert(`You Lose! ${computerSelection} beats ${playerSelection}`);
+            document.getElementById("game").innerHTML =
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
             cScore++;
         }
     }
@@ -36,12 +58,14 @@ function playRound(playerSelection, computerSelection) {
     {
         if (computerSelection === "rock")
         {
-            alert(`You Win! ${playerSelection} beats ${computerSelection}`);
+            document.getElementById("game").innerHTML = 
+            `You Win! ${playerSelection} beats ${computerSelection}`;
             pScore++;
         }
         else
         {
-            alert(`You Lose! ${computerSelection} beats ${playerSelection}`);
+            document.getElementById("game").innerHTML =
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
             cScore++;
         }
     }
@@ -50,26 +74,51 @@ function playRound(playerSelection, computerSelection) {
     {
         if (computerSelection === "paper")
         {
-            alert(`You Win! ${playerSelection} beats ${computerSelection}`);
+            document.getElementById("game").innerHTML = 
+            `You Win! ${playerSelection} beats ${computerSelection}`;
             pScore++;
         }
         else
         {
-            alert(`You Lose! ${computerSelection} beats ${playerSelection}`);
+            document.getElementById("game").innerHTML =
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
             cScore++;
         }
     }
-    alert(`Player score: ${pScore}, Computer score: ${cScore}`);
-}    
-function game() {
-    for (let i = 0; i < 5; i++)
-    {
-        playerSelection = prompt("Your choice?").toLowerCase();
-        computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
+
+    document.getElementById("results").innerHTML = `Player score: ${pScore} : Computer score: ${cScore}`;
+
+    winner();
+
+}
+document.getElementById("results").innerHTML = `Player score: ${pScore} : Computer score: ${cScore}`;
+
+function winner() {
+    if (pScore === rounds) {
+        document.getElementById("match").innerHTML = "Victory! \nPlay again?";
+        resetVariables();
+        disableBtn();   
     }
-    alert(pScore > cScore ? "You Win!" : "You Lose!");
-
-}   
-
-
+    else if (cScore === rounds) {
+        document.getElementById("match").innerHTML = "Defeat! \nPlay again?";
+        resetVariables();
+        disableBtn();   
+    }
+    else
+        document.getElementById("match").innerHTML = "";
+}
+function resetVariables() {
+    let button = document.getElementById("again");
+    button.addEventListener("click", newGame);
+    
+}
+function newGame() {
+    pScore = 0;
+    cScore = 0;
+    window.location.reload();
+}
+function disableBtn() {
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+}
