@@ -86,14 +86,14 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    document.getElementById("pScore").innerText = pScore;
-    document.getElementById("cScore").innerText = cScore;
+    document.getElementById("pScore").innerText = `Player: ${pScore}`;
+    document.getElementById("cScore").innerText = `Computer: ${cScore}`;
 
     winner();
 
 }
-document.getElementById("pScore").innerText = pScore;
-document.getElementById("cScore").innerText = cScore;
+document.getElementById("pScore").innerText = `Player: ${pScore}`;
+document.getElementById("cScore").innerText = `Computer: ${cScore}`;
 
 function winner() {
     if (pScore === rounds) {
