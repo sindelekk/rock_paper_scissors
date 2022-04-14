@@ -1,5 +1,6 @@
 html {
     background-color: red;
+    color: white;
 }
 #scoreboard {
     display: flex;
