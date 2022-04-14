@@ -36,7 +36,7 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection)
-        document.getElementById("game").innerHTML = "It`s a Tie!";
+        document.getElementById("game").innerHTML = "It's a Tie!";
 
     else if (playerSelection === "rock") 
     {
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
         else 
         {
             document.getElementById("game").innerHTML =
-            `You Lose! ${computerSelection} beats ${playerSelection}`;
+            `You Lose! ${computerSelection} beat ${playerSelection}`;
             cScore++;
         }
     }
@@ -65,7 +65,7 @@ function playRound(playerSelection, computerSelection) {
         else
         {
             document.getElementById("game").innerHTML =
-            `You Lose! ${computerSelection} beats ${playerSelection}`;
+            `You Lose! ${computerSelection} beat ${playerSelection}`;
             cScore++;
         }
     }
@@ -75,7 +75,7 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection === "paper")
         {
             document.getElementById("game").innerHTML = 
-            `You Win! ${playerSelection} beats ${computerSelection}`;
+            `You Win! ${playerSelection} beat ${computerSelection}`;
             pScore++;
         }
         else
@@ -86,23 +86,25 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    document.getElementById("results").innerHTML = `Player score: ${pScore} : Computer score: ${cScore}`;
+    document.getElementById("pScore").innerText = pScore;
+    document.getElementById("cScore").innerText = cScore;
 
     winner();
 
 }
-document.getElementById("results").innerHTML = `Player score: ${pScore} : Computer score: ${cScore}`;
+document.getElementById("pScore").innerText = pScore;
+document.getElementById("cScore").innerText = cScore;
 
 function winner() {
     if (pScore === rounds) {
-        document.getElementById("match").innerHTML = "Victory! \nPlay again?";
+        document.getElementById("match").innerText = "Victory!";
         resetVariables();
-        disableBtn();   
+        disableBtn(); 
     }
     else if (cScore === rounds) {
-        document.getElementById("match").innerHTML = "Defeat! \nPlay again?";
+        document.getElementById("match").innerText = `Defeat!`;
         resetVariables();
-        disableBtn();   
+        disableBtn(); 
     }
     else
         document.getElementById("match").innerHTML = "";
